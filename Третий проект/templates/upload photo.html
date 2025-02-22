@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 align="center">{{ title }}</h1>
+<div>
+  <form class="load" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <input type="file" class="form-control-file" id="photo" name="file">
+      <input onclick='refresh()' type="submit" value="Загрузить">
+    </div>
+    <p>
+      {% if photo %}
+      <img src="/static/img/{{ photo }}" class="img-thumbnail shadow-lg">
+      {% else %}
+      <img src="/static/img/{{ current_user.photo }}" class="img-thumbnail shadow-lg">
+      {%endif%}
+    </p>
+    <div align="center">
+      <a href="/user/{{ current_user.id }}">
+        <button type="button" class="btn btn-primary">Отмена</button>
+      </a>
+      <a href="/user/{{ current_user.id }}/save_photo">
+        <button type="button" class="btn btn-primary">Сохранить</button>
+      </a>
+    </div>
+  </form>
+</div>
+
+
+{% endblock %}

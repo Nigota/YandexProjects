@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 align="center">Профиль</h1>
+<p>
+<table align="center" width="70%">
+  <tr valign="top">
+    <td align="center">
+      <div class="avatar">
+        {% if current_user == user %}
+        <a href="{{ user.id }}/upload_photo">
+          <button>
+            <img id="first" src="/static/img/{{ user.photo }}" class="img-thumbnail shadow-lg">
+            <img id="second" src="/static/img/download.png" class="img-thumbnail shadow-lg">
+          </button>
+        </a>
+        {%else%}
+        <img src="/static/img/{{ user.photo }}" class="img-thumbnail shadow-lg">
+        {% endif %}
+      </div>
+    </td>
+    <td>
+      <h1>{{ user.surname }} {{ user.name }}</h1>
+      <h5>{{ user.about }}</h5>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <h3>Возраст:</h3>
+    </td>
+    <td>
+      <h3>{{ user.age }}</h3>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <h3>Должность:</h3>
+    </td>
+    <td>
+      <h3>{{ user.position }}</h3>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <h3>Специальность:</h3>
+    </td>
+    <td>
+      <h3>{{ user.speciality }}</h3>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <h3>Почта:</h3>
+    </td>
+    <td>
+      <h3>{{ user.email }}</h3>
+    </td>
+  </tr>
+</table></p>
+
+{% if current_user == user %}
+<p align="center">
+  <a href="{{ user.id }}/edit_profile" class="btn btn-warning">Изменить профиль</a>
+  <a href="/logout" class="btn btn-danger">Выйти</a>
+</p>
+{% endif %}
+
+{% endblock %}
